@@ -1,14 +1,12 @@
 package com.example.springpractice.domain.article.entity;
 
-import com.example.springpractice.domain.category.entity.Category;
-import com.example.springpractice.domain.member.entity.Member;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
-
-import java.util.List;
 
 @Entity
 @Getter
+@Builder
 @Table(name = "article")
 public class Article {
 
@@ -22,9 +20,15 @@ public class Article {
     @Column(name = "content")
     private String content;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Member member;
-
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Category> categoryList;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    private Member member;
+//
+//    @OneToMany(cascade = CascadeType.ALL)
+//    private List<Category> categoryList;
+//
+//    @OneToMany(cascade = CascadeType.ALL)
+//    private List<Comment> commentList;
+//
+//    @OneToMany(cascade = CascadeType.ALL)
+//    private List<Like> like
 }
