@@ -20,6 +20,9 @@ public class Article {
     @Column(name = "content")
     private String content;
 
+    public Article() {
+    }
+
 //    @ManyToOne(fetch = FetchType.LAZY)
 //    private Member member;
 //
