@@ -1,10 +1,12 @@
 package com.example.springpractice.domain.article.service;
 
-import com.example.springpractice.domain.article.dto.PostArticleRequestDTO;
+import com.example.springpractice.domain.article.dto.request.PostArticleRequestDTO;
+import com.example.springpractice.domain.article.dto.request.UpdateArticleRequestDTO;
 import com.example.springpractice.domain.article.entity.Article;
 import com.example.springpractice.domain.article.repository.ArticleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -29,5 +31,17 @@ public class ArticleService {
 
     public List<Article> readAllArticles() {
         return articleRepository.findAll();
+    }
+
+    @Transactional
+    public Article updateArticle(UpdateArticleRequestDTO dto) {
+        Article article = articleRepository.findById(dto.getId()).orElseThrow();
+        article.update(dto.getTitle(), dto.getContent());
+
+        return article;
+    }
+
+    public void deleteArticle(Long articleId) {
+        articleRepository.deleteById(articleId);
     }
 }

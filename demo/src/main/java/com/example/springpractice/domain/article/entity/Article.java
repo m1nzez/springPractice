@@ -1,12 +1,16 @@
 package com.example.springpractice.domain.article.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "article")
 public class Article {
 
@@ -20,8 +24,6 @@ public class Article {
     @Column(name = "content")
     private String content;
 
-    public Article() {
-    }
 
 //    @ManyToOne(fetch = FetchType.LAZY)
 //    private Member member;
@@ -34,4 +36,9 @@ public class Article {
 //
 //    @OneToMany(cascade = CascadeType.ALL)
 //    private List<Like> like
+
+    public void update(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
 }

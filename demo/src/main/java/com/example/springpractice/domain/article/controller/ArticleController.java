@@ -1,14 +1,14 @@
 package com.example.springpractice.domain.article.controller;
 
-import com.example.springpractice.domain.article.dto.PostArticleRequestDTO;
-import com.example.springpractice.domain.article.dto.PostArticleResponseDTO;
+import com.example.springpractice.domain.article.dto.request.PostArticleRequestDTO;
+import com.example.springpractice.domain.article.dto.response.PostArticleResponseDTO;
+import com.example.springpractice.domain.article.dto.request.UpdateArticleRequestDTO;
 import com.example.springpractice.domain.article.entity.Article;
 import com.example.springpractice.domain.article.service.ArticleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
@@ -38,8 +38,6 @@ public class ArticleController {
                 .build();
     }
 
-
-
     @GetMapping("/article")
     public List<PostArticleResponseDTO> getArticleDto() {
 
@@ -53,4 +51,19 @@ public class ArticleController {
 
     }
 
+    @PutMapping("/article")
+    public PostArticleResponseDTO.UpdateArticleResponseDTO updateArticleDto(@RequestBody UpdateArticleRequestDTO dto) {
+        Article article = articleService.updateArticle(dto);
+
+        return PostArticleResponseDTO.UpdateArticleResponseDTO.builder()
+                .id(article.getId())
+                .title(article.getTitle())
+                .content(article.getContent())
+                .build();
+    }
+
+    @DeleteMapping("/article/{articleId}")
+    public void deleteArticleDto(@PathVariable Long articleId) {
+        articleService.deleteArticle(articleId);
+    }
 }
