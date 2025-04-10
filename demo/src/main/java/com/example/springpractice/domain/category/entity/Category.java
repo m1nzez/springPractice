@@ -4,6 +4,8 @@ import com.example.springpractice.domain.article.entity.Article;
 import jakarta.persistence.*;
 import lombok.Getter;
 
+import java.util.List;
+
 @Entity
 @Getter
 public class Category {
@@ -12,9 +14,9 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "type")
+    private String type;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Article article;
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+    private List<Article> articles;
 }
