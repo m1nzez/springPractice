@@ -19,7 +19,7 @@ public class CategoryController {
 
     // 카테고리 별 조회
     @GetMapping("/articles/{category}")
-    public List<GetCategoryResponseDto> getArticlesByCategoryDto(@PathVariable String categoryType) {
+    public List<GetCategoryResponseDto> getArticlesByCategory(@PathVariable String categoryType) {
         List<Article> articles = categoryService.getArticlesByCategory(categoryType);
 
         return articles.stream()

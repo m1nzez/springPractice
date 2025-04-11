@@ -26,7 +26,7 @@ public class Member {
     private String email;
 
     @Column(name = "provider")
-    private String provider;
+    private String providerType;
 
     @Column(name = "nickname")
     private String nickname;
@@ -45,5 +45,9 @@ public class Member {
 
     @OneToMany(cascade = CascadeType.ALL)
     private List<LikeMember> likeList;
+
+    public void updateMember(String nickname) {
+        this.nickname = nickname;
+    }
 
 }

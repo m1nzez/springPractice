@@ -17,7 +17,7 @@ public class ArticleController {
     private final ArticleService articleService;
 
     @PostMapping("/article")
-    public ArticleResponseDTO postArticleDto(@RequestBody PostArticleRequestDTO dto) {
+    public ArticleResponseDTO postArticle(@RequestBody PostArticleRequestDTO dto) {
         Article article = articleService.createArticle(dto);
 
         return ArticleResponseDTO.builder()
@@ -28,7 +28,7 @@ public class ArticleController {
     }
 
     @GetMapping("/article/{articleId}")
-    public ArticleResponseDTO getOneArticleDto(@PathVariable Long articleId) {
+    public ArticleResponseDTO getOneArticle(@PathVariable Long articleId) {
         Article article = articleService.readArticleById(articleId);
 
         return ArticleResponseDTO.builder()
@@ -39,7 +39,7 @@ public class ArticleController {
     }
 
     @GetMapping("/article")
-    public List<ArticleResponseDTO> getArticleDto() {
+    public List<ArticleResponseDTO> getArticle() {
 
         return articleService.readAllArticles().stream()
                 .map(article -> ArticleResponseDTO.builder()
@@ -52,7 +52,7 @@ public class ArticleController {
     }
 
     @PutMapping("/article")
-    public ArticleResponseDTO.UpdateArticleResponseDTO updateArticleDto(@RequestBody UpdateArticleRequestDTO dto) {
+    public ArticleResponseDTO.UpdateArticleResponseDTO updateArticle(@RequestBody UpdateArticleRequestDTO dto) {
         Article article = articleService.updateArticle(dto);
 
         return ArticleResponseDTO.UpdateArticleResponseDTO.builder()
@@ -63,7 +63,7 @@ public class ArticleController {
     }
 
     @DeleteMapping("/article/{articleId}")
-    public void deleteArticleDto(@PathVariable Long articleId) {
+    public void deleteArticle(@PathVariable Long articleId) {
         articleService.deleteArticle(articleId);
     }
 }
