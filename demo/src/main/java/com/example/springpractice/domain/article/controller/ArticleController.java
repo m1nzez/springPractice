@@ -1,7 +1,7 @@
 package com.example.springpractice.domain.article.controller;
 
 import com.example.springpractice.domain.article.dto.request.PostArticleRequestDTO;
-import com.example.springpractice.domain.article.dto.response.PostArticleResponseDTO;
+import com.example.springpractice.domain.article.dto.response.ArticleResponseDTO;
 import com.example.springpractice.domain.article.dto.request.UpdateArticleRequestDTO;
 import com.example.springpractice.domain.article.entity.Article;
 import com.example.springpractice.domain.article.service.ArticleService;
@@ -17,10 +17,10 @@ public class ArticleController {
     private final ArticleService articleService;
 
     @PostMapping("/article")
-    public PostArticleResponseDTO postArticleDto(@RequestBody PostArticleRequestDTO dto) {
+    public ArticleResponseDTO postArticleDto(@RequestBody PostArticleRequestDTO dto) {
         Article article = articleService.createArticle(dto);
 
-        return PostArticleResponseDTO.builder()
+        return ArticleResponseDTO.builder()
                 .id(article.getId())
                 .title(article.getTitle())
                 .content((article.getContent()))
@@ -28,10 +28,10 @@ public class ArticleController {
     }
 
     @GetMapping("/article/{articleId}")
-    public PostArticleResponseDTO getOneArticleDto(@PathVariable Long articleId) {
+    public ArticleResponseDTO getOneArticleDto(@PathVariable Long articleId) {
         Article article = articleService.readArticleById(articleId);
 
-        return PostArticleResponseDTO.builder()
+        return ArticleResponseDTO.builder()
                 .id(article.getId())
                 .title(article.getTitle())
                 .content((article.getContent()))
@@ -39,10 +39,10 @@ public class ArticleController {
     }
 
     @GetMapping("/article")
-    public List<PostArticleResponseDTO> getArticleDto() {
+    public List<ArticleResponseDTO> getArticleDto() {
 
         return articleService.readAllArticles().stream()
-                .map(article -> PostArticleResponseDTO.builder()
+                .map(article -> ArticleResponseDTO.builder()
                         .id(article.getId())
                         .title(article.getTitle())
                         .content(article.getContent())
@@ -52,10 +52,10 @@ public class ArticleController {
     }
 
     @PutMapping("/article")
-    public PostArticleResponseDTO.UpdateArticleResponseDTO updateArticleDto(@RequestBody UpdateArticleRequestDTO dto) {
+    public ArticleResponseDTO.UpdateArticleResponseDTO updateArticleDto(@RequestBody UpdateArticleRequestDTO dto) {
         Article article = articleService.updateArticle(dto);
 
-        return PostArticleResponseDTO.UpdateArticleResponseDTO.builder()
+        return ArticleResponseDTO.UpdateArticleResponseDTO.builder()
                 .id(article.getId())
                 .title(article.getTitle())
                 .content(article.getContent())

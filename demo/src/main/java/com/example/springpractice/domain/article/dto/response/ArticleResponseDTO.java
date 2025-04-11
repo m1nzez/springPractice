@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @Builder
-public class PostArticleResponseDTO {
+public class ArticleResponseDTO {
 
     private Long id;
     private String title;

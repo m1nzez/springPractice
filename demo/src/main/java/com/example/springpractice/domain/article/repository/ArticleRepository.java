@@ -8,4 +8,6 @@ import java.util.List;
 public interface ArticleRepository extends JpaRepository<Article, Long> {
 
     List<Article> findAllByCategoryType(String type);
+
+    List<Article> findAllLikedArticles(Boolean isLiked);
 }
