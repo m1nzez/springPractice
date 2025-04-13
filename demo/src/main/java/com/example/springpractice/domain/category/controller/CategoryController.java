@@ -3,6 +3,7 @@ package com.example.springpractice.domain.category.controller;
 import com.example.springpractice.domain.article.entity.Article;
 import com.example.springpractice.domain.category.dto.response.GetCategoryResponseDto;
 import com.example.springpractice.domain.category.entity.Category;
+import com.example.springpractice.domain.category.entity.CategoryType;
 import com.example.springpractice.domain.category.service.CategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,12 +20,12 @@ public class CategoryController {
 
     // 카테고리 별 조회
     @GetMapping("/articles/{category}")
-    public List<GetCategoryResponseDto> getArticlesByCategory(@PathVariable String categoryType) {
+    public List<GetCategoryResponseDto> getArticlesByCategory(@PathVariable CategoryType categoryType) {
         List<Article> articles = categoryService.getArticlesByCategory(categoryType);
 
         return articles.stream()
                 .map(article -> GetCategoryResponseDto.builder()
-                        .category(article.getCategory())
+                        .categoryType(article.getCategory().getCategoryType())
                         .id(article.getId())
                         .title(article.getTitle())
                         .content(article.getContent())

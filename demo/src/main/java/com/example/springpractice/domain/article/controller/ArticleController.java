@@ -1,5 +1,6 @@
 package com.example.springpractice.domain.article.controller;
 
+import com.example.springpractice.apiPayload.ApiResponse;
 import com.example.springpractice.domain.article.dto.request.PostArticleRequestDTO;
 import com.example.springpractice.domain.article.dto.response.ArticleResponseDTO;
 import com.example.springpractice.domain.article.dto.request.UpdateArticleRequestDTO;
@@ -52,18 +53,16 @@ public class ArticleController {
     }
 
     @PutMapping("/article")
-    public ArticleResponseDTO.UpdateArticleResponseDTO updateArticle(@RequestBody UpdateArticleRequestDTO dto) {
-        Article article = articleService.updateArticle(dto);
+    public ApiResponse<String> updateArticle(@RequestBody UpdateArticleRequestDTO dto) {
+        articleService.updateArticle(dto);
 
-        return ArticleResponseDTO.UpdateArticleResponseDTO.builder()
-                .id(article.getId())
-                .title(article.getTitle())
-                .content(article.getContent())
-                .build();
+        return ApiResponse.onSuccess("게시글이 수정되었습니다.");
     }
 
     @DeleteMapping("/article/{articleId}")
-    public void deleteArticle(@PathVariable Long articleId) {
+    public ApiResponse<String> deleteArticle(@PathVariable Long articleId) {
         articleService.deleteArticle(articleId);
+
+        return ApiResponse.onSuccess("게시글이 삭제되었습니다.");
     }
 }

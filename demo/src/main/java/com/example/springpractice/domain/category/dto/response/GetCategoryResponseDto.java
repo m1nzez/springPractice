@@ -1,7 +1,7 @@
 package com.example.springpractice.domain.category.dto.response;
 
 
-import com.example.springpractice.domain.category.entity.Category;
+import com.example.springpractice.domain.category.entity.CategoryType;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -9,7 +9,7 @@ import lombok.Getter;
 @Builder
 public class GetCategoryResponseDto {
     private Long id;
-    private Category category;
+    private CategoryType categoryType;
     private String title;
     private String content;
 }

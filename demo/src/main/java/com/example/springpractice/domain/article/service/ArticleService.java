@@ -34,11 +34,9 @@ public class ArticleService {
     }
 
     @Transactional
-    public Article updateArticle(UpdateArticleRequestDTO dto) {
+    public void updateArticle(UpdateArticleRequestDTO dto) {
         Article article = articleRepository.findById(dto.getId()).orElseThrow();
         article.update(dto.getTitle(), dto.getContent());
-
-        return article;
     }
 
     public void deleteArticle(Long articleId) {

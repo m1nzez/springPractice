@@ -33,11 +33,9 @@ public class CommentService {
         return commentRepository.findCommentsByArticle(articleId);
     }
 
-    public Comment updateComment(UpdateCommentRequestDto dto) {
+    public void updateComment(UpdateCommentRequestDto dto) {
         Comment comment = commentRepository.findById(dto.getCommentId()).orElseThrow();
         comment.update(dto.getContent());
-
-        return comment;
     }
 
     public void deleteComment(Long commentId) {
