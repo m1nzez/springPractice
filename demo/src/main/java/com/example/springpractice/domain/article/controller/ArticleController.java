@@ -1,6 +1,7 @@
 package com.example.springpractice.domain.article.controller;
 
 import com.example.springpractice.apiPayload.ApiResponse;
+import com.example.springpractice.domain.article.converter.ArticleConverter;
 import com.example.springpractice.domain.article.dto.request.PostArticleRequestDTO;
 import com.example.springpractice.domain.article.dto.response.ArticleResponseDTO;
 import com.example.springpractice.domain.article.dto.request.UpdateArticleRequestDTO;
@@ -18,14 +19,10 @@ public class ArticleController {
     private final ArticleService articleService;
 
     @PostMapping("/article")
-    public ArticleResponseDTO postArticle(@RequestBody PostArticleRequestDTO dto) {
+    public ApiResponse<ArticleResponseDTO> postArticle(@RequestBody PostArticleRequestDTO dto) {
         Article article = articleService.createArticle(dto);
 
-        return ArticleResponseDTO.builder()
-                .id(article.getId())
-                .title(article.getTitle())
-                .content((article.getContent()))
-                .build();
+        return ApiResponse.onSuccess(ArticleConverter.toArticleDTO(article));
     }
 
     @GetMapping("/article/{articleId}")
