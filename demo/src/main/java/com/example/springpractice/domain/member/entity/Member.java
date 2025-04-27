@@ -34,10 +34,10 @@ public class Member {
 //    @OneToMany(cascade = CascadeType.ALL)
 //    private List<Article> articleList;
 
-    @OneToMany(mappedBy = "sender", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<Report> senderList;
 
-    @OneToMany(mappedBy = "receiver", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<Report> receiverList;
 
     @OneToMany(cascade = CascadeType.ALL)

@@ -36,7 +36,7 @@ public class Article {
     @ManyToOne(fetch = FetchType.LAZY)
     private Category category;
 
-    @OneToMany(mappedBy = "comment", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "article", cascade = CascadeType.ALL)
     private List<Comment> commentList;
 
     @OneToMany(cascade = CascadeType.ALL)
